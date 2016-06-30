@@ -19,5 +19,6 @@ class ThreadedTcpServer(TcpServer.TcpServer):
         fun = self.handle_client
         if not self.block_list.block_client(client_addr):
             fun = self.reject_client
+        # handles client on separate thread
         thread = threading.Thread(fun, (client_socket, client_addr))
         thread.start()

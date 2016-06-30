@@ -1,6 +1,8 @@
 import json
 import socket
 import os
+import BlockList
+import collections
 
 class Config(object):
 
@@ -10,12 +12,15 @@ class Config(object):
             fp = open(filename, 'r')
             data = json.load(fp)
             fp.close()
-        self.port = Config.select_or_default(data['port'], 12345)
-        self.host = Config.select_or_default(data['host'], socket.gethostname())
-        self.block_list = Config.select_or_default(data['block_list'], [])
+        print data
+        self.port = int(data.get('port', 12345))
+        self.host = data.get('host', socket.gethostname())
+        xs = data.get('block_list',  [])
+        self.block_list = BlockList.BlockList(xs)
+        self.use_multithreaded = data.get('use_multithreaded', False)
 
     @staticmethod
-    def select_or_default(self, x, y):
+    def select_or_default(x, y):
         if x == None:
             return x
         return y
