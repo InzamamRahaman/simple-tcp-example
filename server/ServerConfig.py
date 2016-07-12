@@ -4,7 +4,7 @@ import os
 import BlockList
 import collections
 
-class Config(object):
+class ServerConfig(object):
 
     def __init__(self, filename='config.json'):
         data = dict()

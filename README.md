@@ -15,12 +15,11 @@ To run the client (should be done in a separate window)
 python client/main.py
 ```
 
-Both the client and server use .json files for configuration (both named config.js)
+The client and the server use the .json files client_config.json and server_config.json respectively for configuration.
+The accepted properties of the configuration files are detailed in the READMEs of their respecitive folders.
 
-## TODO
 
-1. Create Config object for client programme.
-2. Document server and client further.
+
 
 ## License
 
