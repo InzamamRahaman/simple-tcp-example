@@ -1,7 +1,7 @@
 To run the programme, navigate to the folder in cmd (Windows) or terminal (Unix) and
 type:
 
-```python
+```bash
 python main.py
 ```
 

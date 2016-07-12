@@ -49,7 +49,7 @@ class TcpServer(object):
         :return: None
         """
         fun = self.handle_client
-        if not self.block_list.block_client(client_addr):
+        if self.block_list.block_client(client_addr):
             fun = self.reject_client
         fun(client_socket, client_addr)
 
@@ -77,7 +77,8 @@ class TcpServer(object):
         :param client_addr: the address of the client
         :return: None
         """
-        client_socket.send('You are not allowed to use this server!')
+        block_message = 'You are not allowed to use this server!'
+        client_socket.send(block_message)
         client_socket.close()
 
     def process_client_message(self, message):

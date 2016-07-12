@@ -16,8 +16,14 @@ class ThreadedTcpServer(TcpServer.TcpServer):
         super(ThreadedTcpServer, self).__init__(port, host, block_list)
 
     def process_client_socket(self, client_socket, client_addr):
+        """
+            Wrapper to handle client
+            :param client_socket: the socket to communicate with the client
+            :param client_addr: the address of the client
+            :return: None
+            """
         fun = self.handle_client
-        if not self.block_list.block_client(client_addr):
+        if self.block_list.block_client(client_addr):
             fun = self.reject_client
         # handles client on separate thread
         thread = threading.Thread(fun, (client_socket, client_addr))
